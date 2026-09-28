@@ -1,4 +1,17 @@
 <!doctype html><meta charset="utf-8"><title>Wonder Pulse</title>
-<h1>Wonder Pulse</h1>
+<h1 id="h">Wonder Pulse</h1>
+<div id="box"></div>
 <p>Wonder Pulse creates original animated shorts for the Greta Simonyan YouTube channel and the @wonderpulsestudios TikTok / @letter_whirlwind Instagram accounts.</p>
 <ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul>
+<script>
+const q = new URLSearchParams(location.search);
+const code = q.get('code'), err = q.get('error');
+if (code) {
+  document.getElementById('h').textContent = '✅ Авторизация прошла';
+  document.getElementById('box').innerHTML =
+    '<p>Скопируй этот код и вставь в терминал:</p><pre style="font-size:20px;padding:12px;border:1px solid #ccc;display:inline-block;user-select:all">' + code + '</pre>';
+} else if (err) {
+  document.getElementById('h').textContent = '❌ TikTok вернул ошибку';
+  document.getElementById('box').innerHTML = '<pre>' + err + ' ' + (q.get('error_description')||'') + '</pre>';
+}
+</script>
